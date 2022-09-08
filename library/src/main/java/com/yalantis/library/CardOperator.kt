@@ -119,7 +119,7 @@ class CardOperator(
         valueAnimator.setValues(pvhX, pvhY)
         valueAnimator.addUpdateListener {
             cardView.translationX = it.getAnimatedValue("x") as Float - initialCardPositionX
-            cardView.translationY = it.getAnimatedValue("y") as Float - initialCardPositionY
+            //cardView.translationY = it.getAnimatedValue("y") as Float - initialCardPositionY
         }
         valueAnimator.addListener(object : AnimatorListenerAdapter() {
 

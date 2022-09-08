@@ -103,7 +103,7 @@ constructor(context: Context, attrs: AttributeSet? = null,
         val childCount = childCount - dyingViews.size
 
         scaleView(view, childCount = childCount)
-        view?.translationY = (cardPositionOffsetY * childCount).toFloat()
+        //view?.translationY = (cardPositionOffsetY * childCount).toFloat()
         setZTranslations(childCount)
     }
 
@@ -158,8 +158,8 @@ constructor(context: Context, attrs: AttributeSet? = null,
         if (progress != 0.0f) {
             for (i in 0 until cardsWillBeMoved) {
                 cardView = getChildAt(i)
-                cardView.translationY = (cardPositionOffsetY * Math
-                    .min(cardsWillBeMoved, maxVisibleCards - i - 1) - cardPositionOffsetY * Math.abs(progress))
+                //cardView.translationY = (cardPositionOffsetY * Math
+                  //  .min(cardsWillBeMoved, maxVisibleCards - i - 1) - cardPositionOffsetY * Math.abs(progress))
             }
         }
     }
@@ -352,7 +352,7 @@ constructor(context: Context, attrs: AttributeSet? = null,
         (0 until childCount).map {
             val view = getChildAt(it)
             scaleView(view, 0f, childCount - it - 1)
-            view?.translationY = (cardPositionOffsetY * (childCount - it - 1)).toFloat()
+            //view?.translationY = (cardPositionOffsetY * (childCount - it - 1)).toFloat()
         }
     }
 
@@ -409,7 +409,7 @@ constructor(context: Context, attrs: AttributeSet? = null,
             val view = getChildAt(it)
             val count = childCount - it - 1
             scaleView(view, childCount = count)
-            view?.translationY = (cardPositionOffsetY * count).toFloat()
+            //view?.translationY = (cardPositionOffsetY * count).toFloat()
         }
     }
 

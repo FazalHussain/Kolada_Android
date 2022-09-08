@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.item_koloda.view.*
 /**
  * Created by anna on 11/10/17.
  */
-class KolodaSampleAdapter(val context: Context,val data: List<Int>?, val onRotationListener: RotationListener) : BaseAdapter() {
+class KolodaSampleAdapter(val context: Context,val data: List<Data>?, val updateListener: UpdateListener) : BaseAdapter() {
 
-    private val dataList = mutableListOf<Int>()
+    private val dataList = mutableListOf<Data>()
 
     init {
         if (data != null) {
@@ -30,7 +30,7 @@ class KolodaSampleAdapter(val context: Context,val data: List<Int>?, val onRotat
         return dataList.size
     }
 
-    override fun getItem(position: Int): Int {
+    override fun getItem(position: Int): Data {
         return dataList[position]
     }
 
@@ -38,7 +38,7 @@ class KolodaSampleAdapter(val context: Context,val data: List<Int>?, val onRotat
         return position.toLong()
     }
 
-    fun setData(data: List<Int>) {
+    fun setData(data: List<Data>) {
         dataList.clear()
         dataList.addAll(data)
         notifyDataSetChanged()
@@ -56,8 +56,6 @@ class KolodaSampleAdapter(val context: Context,val data: List<Int>?, val onRotat
             holder = view.tag as DataViewHolder
         }
 
-        if (position % 2 == 0) onRotationListener.onRotatePreviousCard() else onRotationListener.onRotateCurrentCard()
-
         holder.bindData(context, getItem(position))
 
         return view
@@ -69,18 +67,21 @@ class KolodaSampleAdapter(val context: Context,val data: List<Int>?, val onRotat
     inner class DataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var picture = view.kolodaImage
 
-        internal fun bindData(context: Context, data: Int) {
+
+        internal fun bindData(context: Context, data: Data) {
             val transforms = RequestOptions().transforms(CenterCrop(), RoundedCorners(20))
             Glide.with(context)
-                    .load(data)
+                    .load(data.drawableId)
                     .apply(transforms)
                     .into(picture)
+            updateListener.updateData(data)
         }
 
     }
-
-    interface RotationListener {
-        fun onRotatePreviousCard()
-        fun onRotateCurrentCard()
-    }
 }
+
+interface UpdateListener {
+    fun updateData(data: Data)
+}
+
+data class Data(val drawableId: Int, val textTitle: String)

@@ -76,30 +76,17 @@ class MainActivity : AppCompatActivity() {
      * Fills deck with data
      */
     private fun fillData() {
-        val data = arrayOf(R.drawable.cupcacke,
-            R.drawable.donut,
-            R.drawable.eclair,
-            R.drawable.froyo,
-            R.drawable.gingerbread,
-            R.drawable.honeycomb,
-            R.drawable.ice_cream_sandwich,
-            R.drawable.jelly_bean,
-            R.drawable.kitkat,
-            R.drawable.lollipop,
-            R.drawable.marshmallow,
-            R.drawable.nougat,
-            R.drawable.oreo)
-        adapter = KolodaSampleAdapter(this, data.toList(),
-            object : KolodaSampleAdapter.RotationListener {
-                override fun onRotatePreviousCard() {
-                    koloda.rotation = -5f
-                }
-
-                override fun onRotateCurrentCard() {
-                    koloda.rotation = 5f
-                }
-
-            })
+        val data = arrayOf(
+            Data(R.drawable.cupcacke,"CupCake"),
+            Data(R.drawable.donut, "Donut"),
+            Data(R.drawable.eclair, "Eclair"),
+            Data(R.drawable.froyo,"Faoyo")
+        )
+        adapter = KolodaSampleAdapter(this, data.toList(), object : UpdateListener {
+            override fun updateData(data: Data) {
+                textTitle.text = data.textTitle
+            }
+        })
         koloda.adapter = adapter
         koloda.isNeedCircleLoading = true
     }

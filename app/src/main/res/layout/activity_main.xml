@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activityMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:clipToPadding="false">
 
-    <com.yalantis.library.Koloda
-        android:id="@+id/koloda"
-        android:rotation="5"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:koloda_card_layout="@layout/item_koloda" />
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_app_updated_nobg">
+
+            <com.yalantis.library.Koloda
+                android:id="@+id/koloda"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:koloda_card_layout="@layout/item_koloda" />
+
+        </FrameLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Hello World"
+            android:id="@+id/textTitle"
+            android:layout_margin="24dp"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/buttonsLayout"
