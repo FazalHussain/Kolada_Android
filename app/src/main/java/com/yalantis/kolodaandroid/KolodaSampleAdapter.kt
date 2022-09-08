@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.item_koloda.view.*
 /**
  * Created by anna on 11/10/17.
  */
-class KolodaSampleAdapter(val context: Context,val data: List<Int>?) : BaseAdapter() {
+class KolodaSampleAdapter(val context: Context,val data: List<Int>?, val onRotationListener: RotationListener) : BaseAdapter() {
 
     private val dataList = mutableListOf<Int>()
 
@@ -56,6 +56,8 @@ class KolodaSampleAdapter(val context: Context,val data: List<Int>?) : BaseAdapt
             holder = view.tag as DataViewHolder
         }
 
+        if (position % 2 == 0) onRotationListener.onRotatePreviousCard() else onRotationListener.onRotateCurrentCard()
+
         holder.bindData(context, getItem(position))
 
         return view
@@ -64,7 +66,7 @@ class KolodaSampleAdapter(val context: Context,val data: List<Int>?) : BaseAdapt
     /**
      * Static view items holder
      */
-    class DataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class DataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var picture = view.kolodaImage
 
         internal fun bindData(context: Context, data: Int) {
@@ -75,5 +77,10 @@ class KolodaSampleAdapter(val context: Context,val data: List<Int>?) : BaseAdapt
                     .into(picture)
         }
 
+    }
+
+    interface RotationListener {
+        fun onRotatePreviousCard()
+        fun onRotateCurrentCard()
     }
 }

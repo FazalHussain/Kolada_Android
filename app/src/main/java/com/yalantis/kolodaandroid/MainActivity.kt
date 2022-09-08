@@ -89,7 +89,17 @@ class MainActivity : AppCompatActivity() {
             R.drawable.marshmallow,
             R.drawable.nougat,
             R.drawable.oreo)
-        adapter = KolodaSampleAdapter(this, data.toList())
+        adapter = KolodaSampleAdapter(this, data.toList(),
+            object : KolodaSampleAdapter.RotationListener {
+                override fun onRotatePreviousCard() {
+                    koloda.rotation = -5f
+                }
+
+                override fun onRotateCurrentCard() {
+                    koloda.rotation = 5f
+                }
+
+            })
         koloda.adapter = adapter
         koloda.isNeedCircleLoading = true
     }

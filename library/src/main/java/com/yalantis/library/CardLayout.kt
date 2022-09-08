@@ -33,14 +33,16 @@ class CardLayout
 
         leftOverlayImage?.let {
             leftImageView = ImageView(context)
-            leftImageView?.setImageDrawable(ContextCompat.getDrawable(context, it))
+            //leftImageView?.setImageDrawable(ContextCompat.getDrawable(context, it))
+            leftImageView?.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cupcacke))
             leftImageView?.alpha = 0f
             addView(leftImageView)
         }
 
         rightOverlayImage?.let {
             rightImageView = ImageView(context)
-            rightImageView?.setImageDrawable(ContextCompat.getDrawable(context, it))
+                //rightImageView?.setImageDrawable(ContextCompat.getDrawable(context, it))
+            rightImageView?.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.nougat))
             rightImageView?.alpha = 0f
             addView(rightImageView)
         }
