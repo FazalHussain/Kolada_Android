@@ -15,7 +15,7 @@
     app:cardUseCompatPadding="true"
     card_view:cardPreventCornerOverlap="false">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/kolodaImage"
         android:layout_width="332dp"
         android:layout_height="380dp"
