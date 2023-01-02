@@ -78,20 +78,24 @@ constructor(context: Context, attrs: AttributeSet? = null,
      */
 
     private fun addCardToDeck() {
-        if (adapterPosition < adapter?.count?.minus(1) ?: 0) {
+        try {
+            if (adapterPosition < (adapter?.count?.minus(1) ?: 0)) {
 
-            val cardLayout = CardLayout(context, cardParams = this)
-
-            initializeCardPosition(cardLayout)
-            cardLayout.let {
-                addView(it, 0)
-                deckMap[it] = CardOperator(this, it, adapterPosition++, cardCallback)
-                val newCard = adapter?.getView(adapterPosition, null, it)
-                it.addOverlays(newCard, rightOverlay, leftOverlay)
+                val cardLayout = CardLayout(context, cardParams = this)
+                cardLayout.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+                initializeCardPosition(cardLayout)
+                cardLayout.let {
+                    addView(it, 0)
+                    deckMap[it] = CardOperator(this, it, adapterPosition++, cardCallback)
+                    val newCard = adapter?.getView(adapterPosition, null, it)
+                    it.addOverlays(newCard, rightOverlay, leftOverlay)
+                }
+            } else if (isNeedCircleLoading) {
+                adapterPosition = -1
+                dataSetObservable?.onChanged()
             }
-        } else if (isNeedCircleLoading) {
-            adapterPosition = -1
-            dataSetObservable?.onChanged()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -234,7 +238,7 @@ constructor(context: Context, attrs: AttributeSet? = null,
 
                 val childCount = childCount - dyingViews.size
                 for (i in childCount until maxVisibleCards) {
-                    addCardToDeck()
+                     addCardToDeck()
                 }
                 checkTopCard()
             }
