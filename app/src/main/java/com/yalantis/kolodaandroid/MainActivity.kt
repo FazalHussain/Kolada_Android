@@ -80,8 +80,20 @@ class MainActivity : AppCompatActivity() {
             Data(R.drawable.cupcacke,"CupCake"),
             Data(R.drawable.donut, "Donut"),
             Data(R.drawable.eclair, "Eclair"),
-            Data(R.drawable.froyo,"Faoyo")
-        )
+            Data(R.drawable.froyo,"Froyo"),
+            Data(R.drawable.cupcacke,"CupCake"),
+            Data(R.drawable.donut, "Donut"),
+            Data(R.drawable.eclair, "Eclair"),
+            Data(R.drawable.froyo,"Froyo"),
+            Data(R.drawable.cupcacke,"CupCake"),
+            Data(R.drawable.donut, "Donut"),
+            Data(R.drawable.eclair, "Eclair"),
+            Data(R.drawable.froyo,"Froyo"),
+            Data(R.drawable.cupcacke,"CupCake"),
+            Data(R.drawable.donut, "Donut"),
+            Data(R.drawable.eclair, "Eclair"),
+            Data(R.drawable.froyo,"Froyo"),
+            )
         adapter = KolodaSampleAdapter(this, data.toList(), object : UpdateListener {
             override fun updateData(data: Data) {
                 textTitle.text = data.textTitle
