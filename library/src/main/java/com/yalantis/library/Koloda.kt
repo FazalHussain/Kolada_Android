@@ -78,10 +78,9 @@ constructor(context: Context, attrs: AttributeSet? = null,
      */
 
     private fun addCardToDeck() {
+        val cardLayout = CardLayout(context, cardParams = this)
         try {
             if (adapterPosition < (adapter?.count?.minus(1) ?: 0)) {
-
-                val cardLayout = CardLayout(context, cardParams = this)
                 cardLayout.setLayerType(View.LAYER_TYPE_HARDWARE, null)
                 initializeCardPosition(cardLayout)
                 cardLayout.let {
@@ -95,6 +94,9 @@ constructor(context: Context, attrs: AttributeSet? = null,
                 dataSetObservable?.onChanged()
             }
         } catch (e: Exception) {
+            removeAllViews()
+            adapterPosition = -1
+            dataSetObservable?.onChanged()
             e.printStackTrace()
         }
     }
